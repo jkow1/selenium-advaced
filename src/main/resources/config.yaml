@@ -1,0 +1,17 @@
+browser:
+  browserName: chrome
+  windowMaximized: true
+  windowHeadless: false
+  webElementTimeOut: 15
+
+environment:
+  env1:
+    envName: test
+    active: true
+    appUrl: https://www.selenium.dev
+    expectedTitle: "Selenium"
+  env2:
+    envName: inv
+    active: false
+    appUrl: https://logback.qos.ch
+    expectedTitle: "Logback Home"
