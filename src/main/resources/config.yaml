@@ -8,10 +8,4 @@ environment:
   env1:
     envName: test
     active: true
-    appUrl: https://www.selenium.dev
-    expectedTitle: "Selenium"
-  env2:
-    envName: inv
-    active: false
-    appUrl: https://logback.qos.ch
-    expectedTitle: "Logback Home"
+    appUrl: http://146.59.32.4/index.php

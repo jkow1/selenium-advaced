@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 @Slf4j
-public class DriverHandler {
+public class DriverFactory {
 
     private WebDriver driver;
     private String browserName;
