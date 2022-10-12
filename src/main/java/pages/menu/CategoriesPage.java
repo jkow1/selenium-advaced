@@ -1,5 +1,6 @@
 package pages.menu;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +8,7 @@ import pages.basic.BasePage;
 
 import java.util.List;
 
+@Slf4j
 public class CategoriesPage extends BasePage {
     public CategoriesPage(WebDriver driver) {
         super(driver);
@@ -46,10 +48,15 @@ public class CategoriesPage extends BasePage {
     }
 
     public void clickOnCategory(String catName) {
+        log.info("Getting category {}", catName);
         clickOnBtn(topMenuCategories.stream()
                 .filter(category -> getWebElementText(category).equals(catName))
                 .findFirst()
                 .get());
+    }
+
+    public int getSizeOfTopMenuCategoryList(){
+        return topMenuCategories.size();
     }
 
 

@@ -1,4 +1,4 @@
-package logback;
+package base.logback;
 
 import org.slf4j.Logger;
 

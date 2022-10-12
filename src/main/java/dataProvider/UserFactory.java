@@ -1,9 +1,11 @@
-package models;
+package dataProvider;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import lombok.extern.slf4j.Slf4j;
+import models.User;
+import models.UserBuilder;
 
 import java.util.Locale;
 
@@ -25,6 +27,7 @@ public class UserFactory {
                 .setPostalCode(faker.address().zipCode())
                 .setPhoneNumber(faker.phoneNumber().phoneNumber())
                 .setAddressAssignAlias(getRandomPassword())
+                .setCountry("United States")
                 .build();
         log.info("Random user data: {}", randomUser.toString());
         return randomUser;
@@ -33,14 +36,15 @@ public class UserFactory {
     public User getAlreadyExistingUser() {
         User existingUser = new UserBuilder().setFirstName("Jan")
                 .setLastName("Nowak")
-                .setEmail("test00@test.sii.pl")
+                .setEmail("testOfCheckout00@test.sii.pl")
                 .setPassword("password")
                 .setAddress(faker.address().streetAddress())
                 .setCity(faker.address().city())
                 .setState(faker.address().state())
-                .setPostalCode(faker.address().zipCode())
+                .setPostalCode("11111")
                 .setPhoneNumber(faker.phoneNumber().phoneNumber())
                 .setAddressAssignAlias(getRandomPassword())
+                .setCountry("United States")
                 .build();
         log.info("Existing user data: {}", existingUser.toString());
         return existingUser;

@@ -1,24 +1,17 @@
 package searchTests;
 
-import base.TestBase;
-import logback.BasicLogger;
+import base.Pages;
+import base.logback.BasicLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.products.ProductPage;
-import pages.products.ProductsGridPage;
-import pages.search.SearchPage;
 
 @Slf4j
-public class SearchTest extends TestBase {
+public class SearchTest extends Pages {
 
     @Test
     public void randomSearchTestWithSuccess() {
-        SearchPage searchPage = new SearchPage(driver);
-        ProductsGridPage productsGridPage = new ProductsGridPage(driver);
-        ProductPage productPage = productsGridPage.getRandomProduct();
-
-        String expectedProductName = productPage.getProductName();
+        String expectedProductName = productsGridPage.getRandomProduct().getProductName();
 
         searchPage.searchThis(expectedProductName)
                 .clickOnSearchBtn();
@@ -31,11 +24,9 @@ public class SearchTest extends TestBase {
 
     @Test
     public void searchDropdownTestWithSuccess() {
-        SearchPage searchPage = new SearchPage(driver);
-
         searchPage.searchThis("HUMMINGBIRD");
 
-        Assertions.assertThat(searchPage.checkIfSearchingTextIsInDropdown()).isEqualTo(true);
+        Assertions.assertThat(searchPage.getAllSearchResults()).contains("HUMMINGBIRD");
 
     }
 }

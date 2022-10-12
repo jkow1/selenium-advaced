@@ -37,14 +37,11 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public Boolean checkIfSearchingTextIsInDropdown() {
+    public List<String> getAllSearchResults() {
         String actualSearchInput = searchInput.getText();
         waitToBeVisible(dropdownMenu);
         return dropdownResults.stream()
-                .filter(item -> item.getText().contains(actualSearchInput))
-                .findAny()
-                .isPresent();
+                .map(WebElement::getText)
+                .toList();
     }
-
-
 }

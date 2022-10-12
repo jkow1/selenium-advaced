@@ -5,8 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -25,22 +23,17 @@ public class DriverFactory {
                 ChromeOptions optionsC = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
                 optionsC.addArguments("start-maximized");
-                driver = new ChromeDriver(optionsC);
+                optionsC.addArguments("−−incognito");
+                return new ChromeDriver(optionsC);
             }
             case "firefox" -> {
                 FirefoxOptions optionsF = new FirefoxOptions();
                 WebDriverManager.firefoxdriver().setup();
                 optionsF.addArguments("start-maximized");
-                driver = new FirefoxDriver(optionsF);
+                return new FirefoxDriver(optionsF);
             }
-            default -> {
-                EdgeOptions optionsE = new EdgeOptions();
-                optionsE.addArguments("start-maximized");
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
-            }
+            default -> throw new IllegalArgumentException("Unrecognized browser name");
         }
-        return this.driver;
     }
 
 }

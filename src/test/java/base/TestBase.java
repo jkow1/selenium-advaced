@@ -25,8 +25,9 @@ public class TestBase {
         driverHandler = new DriverFactory();
         java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
     }
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         driver = driverHandler.getDriver();
         log.info("Driver initialized");
         driver.get(System.getProperty("appUrl"));
