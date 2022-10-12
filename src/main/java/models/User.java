@@ -11,8 +11,9 @@ public class User {
     private String postalCode;
     private String phoneNumber;
     private String addressAssignAlias;
+    private String country;
 
-    public User(String firstName, String lastName, String email, String password, String address, String city, String state, String postalCode, String phoneNumber, String addressAssignAlias) {
+    public User(String firstName, String lastName, String email, String password, String address, String city, String state, String postalCode, String phoneNumber, String addressAssignAlias, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -23,6 +24,7 @@ public class User {
         this.postalCode = postalCode;
         this.phoneNumber = phoneNumber;
         this.addressAssignAlias = addressAssignAlias;
+        this.country = country;
     }
 
     public String getFirstName() {
@@ -65,17 +67,22 @@ public class User {
         return addressAssignAlias;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
     @Override
     public String toString() {
         return "firstName='" + firstName +
                 "', lastName='" + lastName +
                 "', email='" + email +
                 "', password='" + password +
+                "', country='" + country +
                 "', address='" + address +
                 "', city='" + city +
                 "', state='" + state +
                 "', postalCode='" + postalCode +
                 "', phoneNumber='" + phoneNumber +
-                "', addressAssignAlias='" + addressAssignAlias+"'";
+                "', addressAssignAlias='" + addressAssignAlias + "'";
     }
 }

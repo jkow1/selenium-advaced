@@ -16,6 +16,9 @@ public class ProductsGridPage extends BasePage {
         super(driver);
     }
 
+    @FindBy(css = ".products")
+    private WebElement productsGrid;
+
     @FindBy(css = ".product")
     private List<WebElement> productsInGrid;
 
@@ -55,6 +58,11 @@ public class ProductsGridPage extends BasePage {
 
     public boolean isThereAnyActiveFilters() {
         return elementIsVisible(activeFiltersBar);
+    }
+
+    public ProductsGridPage waitToProductsBeVisible() {
+        waitToBeVisible(productsGrid);
+        return this;
     }
 
 }

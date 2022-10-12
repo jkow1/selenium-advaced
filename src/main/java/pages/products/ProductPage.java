@@ -30,7 +30,20 @@ public class ProductPage extends BasePage {
         return getWebElementText(productPrice);
     }
 
+    public double getProductDoublePrice() {
+        return getPriceFromWebElementText(productPrice);
+    }
+
     public int getProductIntPrice() {
-        return Integer.parseInt(getProductPrice().replaceAll("[\\D+00]", ""));
+        return Integer.parseInt(getProductPrice().replaceAll("[\\D+0]", ""));
+    }
+
+    public void clickOnProduct() {
+        clickOnBtn(productName);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

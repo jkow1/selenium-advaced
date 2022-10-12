@@ -40,12 +40,12 @@ public class FiltersSideMenuPage extends BasePage {
     public List<Integer> getPriceIntervalValues() {
         String interval = getWebElementText(priceInterval);
         List<String> list = new ArrayList<>();
-        List.of(interval.split(" - ")).stream()
+        List.of(interval.split(" - "))
                 .forEach(element -> list.add(Arrays.stream(element.split("\\.00"))
                         .toList().get(0).replaceAll("\\D+", ""))
                 );
         List<Integer> priceInterval = new ArrayList<>();
-        list.stream()
+        list
                 .forEach(element -> priceInterval.add(Integer.parseInt(element)));
 
         log.debug("Min {} and max {} price", priceInterval.get(0), priceInterval.get(1));

@@ -1,6 +1,7 @@
 package pages.basic;
 
 import lombok.extern.slf4j.Slf4j;
+import org.decimal4j.util.DoubleRounder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,6 +16,9 @@ import java.util.Random;
 @Slf4j
 public class BasePage {
 
+    public WebDriver driver;
+    public WebDriverWait wait;
+
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -26,9 +30,6 @@ public class BasePage {
         PageFactory.initElements(new DefaultElementLocatorFactory(element), this);
     }
 
-    protected WebDriver driver;
-    WebDriverWait wait;
-
     public String getWebElementText(WebElement element) {
         String text = element.getText();
         log.info("Element text: {}", text);
@@ -36,7 +37,8 @@ public class BasePage {
     }
 
     public void clickOnBtn(WebElement element) {
-        log.info("Clicking on {}", element.getText() /*element.getAttribute("textContent").replaceAll("[\n\\s]","")*/);
+        //waitToBtnIsClickable(element);
+        log.info("Clicking on {}", element.getAttribute("class"));
         element.click();
     }
 
@@ -72,5 +74,23 @@ public class BasePage {
 
     public boolean elementIsPresent(List<WebElement> element) {
         return element.size() > 0;
+    }
+
+    public String getWebElementValue(WebElement element) {
+        String value = element.getAttribute("value");
+        log.debug("Value of WebElement is {}", value);
+        return value;
+    }
+
+    public double getPriceFromWebElementText(WebElement element) {
+        return getFormattedDouble(Double.parseDouble(getWebElementText(element).replaceAll("\\$", "")));
+    }
+
+    public double getFormattedDouble(double number) {
+        return DoubleRounder.round(number, 2);
+    }
+
+    public void waitToBtnIsClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

@@ -1,22 +1,14 @@
-package FIlters;
+package filters;
 
-import base.TestBase;
+import base.Pages;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.menu.CategoriesPage;
-import pages.menu.FiltersSideMenuPage;
 import pages.products.ProductPage;
-import pages.products.ProductsGridPage;
 
-public class FiltersTest extends TestBase {
+public class FiltersTest extends Pages {
 
     @Test
     public void filtersTestWithSuccess() {
-        CategoriesPage categoriesPage = new CategoriesPage(driver);
-        FiltersSideMenuPage filtersSideMenuPage = new FiltersSideMenuPage(driver);
-        ProductsGridPage productsGridPage = new ProductsGridPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-
         categoriesPage.clickOnCategory("ART");
 
         filtersSideMenuPage.moveLeftSlider(8);

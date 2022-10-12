@@ -12,6 +12,7 @@ public class UserBuilder {
     private String postalCode;
     private String phoneNumber;
     private String addressAssignAlias;
+    private String country;
 
     public UserBuilder() {
     }
@@ -66,7 +67,13 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
+
     public User build() {
-        return new User(firstName, lastName, email, password, address, city, state, postalCode, phoneNumber, addressAssignAlias);
+        return new User(firstName, lastName, email, password, address, city, state, postalCode, phoneNumber, addressAssignAlias, country);
     }
 }
