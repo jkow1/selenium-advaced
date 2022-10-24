@@ -1,7 +1,7 @@
 package configuration;
 
-import models.Browser;
-import models.Environment;
+import models.config.Browser;
+import models.config.Environment;
 
 public class Config {
     public Environment environment;

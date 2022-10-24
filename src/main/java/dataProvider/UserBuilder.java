@@ -1,4 +1,6 @@
-package models;
+package dataProvider;
+
+import models.entities.User;
 
 public class UserBuilder {
 

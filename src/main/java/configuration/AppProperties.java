@@ -1,9 +1,9 @@
 package configuration;
 
 import lombok.extern.slf4j.Slf4j;
-import models.Browser;
-import models.Environment;
-import models.EnvironmentModel;
+import models.config.Browser;
+import models.config.Environment;
+import models.config.EnvironmentModel;
 
 import java.util.List;
 import java.util.Map;

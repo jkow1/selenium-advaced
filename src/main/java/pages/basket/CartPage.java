@@ -1,9 +1,9 @@
 package pages.basket;
 
 import lombok.extern.slf4j.Slf4j;
-import models.Basket;
-import models.ProductData;
-import models.ProductLine;
+import models.entities.Basket;
+import models.entities.BasketLine;
+import models.entities.ProductData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,42 +39,35 @@ public class CartPage extends BasePage {
     @FindBy(css = ".btn-primary")
     private WebElement proceedToCheckoutBtn;
 
+    @FindBy(css = "#cart-subtotal-products .value")
+    private WebElement totalPriceWithoutShipment;
+
     public CartPage waitToCartBeVisible() {
         waitToBeVisible(cartGrid);
         return this;
     }
 
     public double getTotalCartPrice() {
-        return getPriceFromWebElementText(totalPriceOfCart);
+        return getPrice(totalPriceWithoutShipment);
     }
 
-    public double getShippingPrice() {
-        return getPriceFromWebElementText(shippingCartPrice);
+    public double getTotalPriceWithoutShipment() {
+        return getFormattedDouble(getTotalCartPrice());
     }
 
-    public double getTotalPriceOfProducts() {
-        return getFormattedDouble(getTotalCartPrice() - getShippingPrice());
-    }
-
-    public CartPage removeProduct() {
+    public CartPage removeFirstProduct() {
         log.info("Removing first element from cart");
         clickOnBtn(removeProductBtn);
         return this;
     }
 
-    public Basket getProductsInCart() {
+    public Basket toBasket() {
         Basket listOfProducts = new Basket();
         waitToCartBeVisible();
-        for (WebElement element : productsInCart) {
-            CartProductPage product = new CartProductPage(driver, element);
-            String productName = product.getProductName();
-            double singlePrice = product.getSingleProductPrice();
-            int quantity = product.getProductQuantity();
-            double quantityPrice = product.getProductTotalPrice();
-            listOfProducts.addNewProduct(new ProductLine(new ProductData(productName, singlePrice), quantity, quantityPrice));
-            log.info("Adding {} items of {} with  single price {} and quantity price {} to list ", quantity, productName, singlePrice, quantityPrice);
-        }
-        log.info("Cart contains {} of products of total value {}", listOfProducts.getSizeOfListOfProducts(), listOfProducts.getBasketValue());
+        productsInCart.stream().map(element -> new CartProductPage(driver, element))
+                .map(product -> new BasketLine(new ProductData(product.getProductName(), product.getSingleProductPrice()), product.getProductQuantity(), product.getProductTotalPrice()))
+                .forEach(listOfProducts::addProduct);
+        log.info("Cart contains {} product/s of total value {}", listOfProducts.getProducts().toString(), listOfProducts.getBasketTotalPrice());
         return listOfProducts;
     }
 
