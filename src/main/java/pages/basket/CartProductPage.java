@@ -32,14 +32,14 @@ public class CartProductPage extends BasePage {
     }
 
     public double getSingleProductPrice() {
-        return getPriceFromWebElementText(currentProductPrice);
+        return getPrice(currentProductPrice);
     }
 
     public double getProductTotalPrice() {
-        return getPriceFromWebElementText(totalProductPrice);
+        return getPrice(totalProductPrice);
     }
 
     public int getProductQuantity() {
-        return Integer.parseInt(getWebElementValue(productQuantity));
+        return Integer.parseInt(getValue(productQuantity));
     }
 }

@@ -8,21 +8,21 @@ import pages.menu.CategoriesPage;
 import pages.menu.FiltersSideMenuPage;
 import pages.menu.TopHeaderPage;
 import pages.order.OrderDetailsPage;
-import pages.products.ProductCartModalPage;
-import pages.products.ProductContainerPage;
-import pages.products.ProductPage;
-import pages.products.ProductsGridPage;
+import pages.product.ProductCartModalPage;
+import pages.product.ProductContainerPage;
+import pages.product.ProductMiniaturePage;
+import pages.product.ProductsGridPage;
 import pages.search.SearchPage;
 import pages.user.AccountPage;
 import pages.user.CreateAccountPage;
-import pages.user.OrderHistoryPage;
+import pages.order.OrderHistoryPage;
 import pages.user.SignInPage;
 
 public class Pages extends TestBase {
 
     public CategoriesPage categoriesPage;
     public FiltersSideMenuPage filtersSideMenuPage;
-    public ProductPage productPage;
+    public ProductMiniaturePage productMiniaturePage;
     public ProductsGridPage productsGridPage;
     public SearchPage searchPage;
     public ProductContainerPage productContainerPage;
@@ -38,11 +38,12 @@ public class Pages extends TestBase {
     public OrderDetailsPage orderDetailsPage;
 
 
+
     @BeforeEach
     public void pagesSetUp() {
         categoriesPage = new CategoriesPage(driver);
         filtersSideMenuPage = new FiltersSideMenuPage(driver);
-        productPage = new ProductPage(driver);
+        productMiniaturePage = new ProductMiniaturePage(driver);
         productsGridPage = new ProductsGridPage(driver);
         searchPage = new SearchPage(driver);
         productContainerPage = new ProductContainerPage(driver);

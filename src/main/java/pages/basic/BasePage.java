@@ -32,18 +32,17 @@ public class BasePage {
 
     public String getWebElementText(WebElement element) {
         String text = element.getText();
-        log.info("Element text: {}", text);
+        log.debug("Element text: {}", text);
         return text;
     }
 
     public void clickOnBtn(WebElement element) {
-        //waitToBtnIsClickable(element);
-        log.info("Clicking on {}", element.getAttribute("class"));
+        log.debug("Clicking on {}", element.getAttribute("class"));
         element.click();
     }
 
     public void sendKeys(WebElement element, String keys) {
-        log.info("Typing: {}", keys);
+        log.debug("Typing: {}", keys);
         element.sendKeys(keys);
     }
 
@@ -76,13 +75,13 @@ public class BasePage {
         return element.size() > 0;
     }
 
-    public String getWebElementValue(WebElement element) {
+    public String getValue(WebElement element) {
         String value = element.getAttribute("value");
         log.debug("Value of WebElement is {}", value);
         return value;
     }
 
-    public double getPriceFromWebElementText(WebElement element) {
+    public double getPrice(WebElement element) {
         return getFormattedDouble(Double.parseDouble(getWebElementText(element).replaceAll("\\$", "")));
     }
 

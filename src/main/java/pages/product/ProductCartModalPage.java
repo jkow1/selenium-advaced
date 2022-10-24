@@ -1,4 +1,4 @@
-package pages.products;
+package pages.product;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +20,7 @@ public class ProductCartModalPage extends BasePage {
     @FindBy(css = "#blockcart-modal .product-quantity strong")
     private WebElement cartModalProductQuantity;
 
-    @FindBy(css = "#blockcart-modal .cart-products-count")
+    @FindBy(css = "#blockcart-modal .cart-product-count")
     private WebElement cartModalProductCount;
 
     @FindBy(css = "#blockcart-modal .product-total .value")
@@ -58,12 +58,16 @@ public class ProductCartModalPage extends BasePage {
     }
 
     public ProductCartModalPage clickOnContinueShoppingBtn(){
+        waitToModalBeVisible();
         clickOnBtn(cartModalContinueBtn);
+        waitToModalBeNotVisible();
         return this;
     }
 
     public ProductCartModalPage clickOnProceedToCheckoutBtn(){
+        waitToModalBeVisible();
         clickOnBtn(cartModalProceedToCheckoutBtn);
+        waitToModalBeNotVisible();
         return this;
     }
 

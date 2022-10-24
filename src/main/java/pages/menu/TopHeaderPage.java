@@ -4,13 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.basic.BasePage;
+import pages.user.AccountPage;
+import pages.user.SignInPage;
 
 public class TopHeaderPage extends BasePage {
     public TopHeaderPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(css = ".header .cart-products-count")
+    @FindBy(css = ".header .cart-product-count")
     private WebElement cartHeaderProductCount;
 
     @FindBy(css = "#_desktop_logo img")
@@ -34,8 +36,9 @@ public class TopHeaderPage extends BasePage {
         clickOnBtn(mainPageBtn);
     }
 
-    public void clickOnUserAccountBtn(){
+    public AccountPage clickOnUserAccountBtn(){
         clickOnBtn(userAccountBtn);
+        return new AccountPage(driver);
     }
 
     public TopHeaderPage waitToUserAccountBtnBeVisible(){
@@ -43,9 +46,9 @@ public class TopHeaderPage extends BasePage {
         return this;
     }
 
-    public TopHeaderPage clickOnOnSignInBtn(){
+    public SignInPage clickOnOnSignInBtn(){
         clickOnBtn(signInBtn);
-        return this;
+        return new SignInPage(driver);
     }
 
 }

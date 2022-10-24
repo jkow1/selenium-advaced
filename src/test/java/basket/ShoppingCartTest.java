@@ -29,7 +29,7 @@ public class ShoppingCartTest extends Pages {
         Assertions.assertThat(productCartModalPage.getProductName()).isEqualTo(expectedProductName);
         log.info("Asserting product quantity");
         Assertions.assertThat(Integer.parseInt(productCartModalPage.geProductQuantity())).isEqualTo(expectedProductQuantity);
-        log.info("Asserting added products quantity");
+        log.info("Asserting added product quantity");
         Assertions.assertThat(productCartModalPage.geProductsCount()).isEqualTo(expectedProductsCountInformation);
         log.info("Asserting product total value");
         Assertions.assertThat(productCartModalPage.geProductTotalValue()).isEqualTo(expectedTotalValue);
@@ -37,7 +37,7 @@ public class ShoppingCartTest extends Pages {
         productCartModalPage.clickOnContinueShoppingBtn()
                 .waitToModalBeNotVisible();
 
-        log.info("Asserting all products quantity in cart");
+        log.info("Asserting all product quantity in cart");
         Assertions.assertThat(topHeaderPage.getProductCount()).isEqualTo(expectedProductQuantity);
     }
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.basic.BasePage;
+import pages.order.OrderHistoryPage;
 
 public class AccountPage extends BasePage {
 
@@ -14,9 +15,10 @@ public class AccountPage extends BasePage {
     @FindBy(css = "#history-link span")
     private WebElement orderHistoryBtn;
 
-    public void goToOrderHistoryPage() {
+    public OrderHistoryPage goToOrderHistoryPage() {
         waitToBeVisible(orderHistoryBtn);
         clickOnBtn(orderHistoryBtn);
+        return new OrderHistoryPage(driver);
     }
 
 

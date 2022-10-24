@@ -1,4 +1,4 @@
-package pages.products;
+package pages.product;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -16,33 +16,33 @@ public class ProductsGridPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = ".products")
+    @FindBy(css = ".product")
     private WebElement productsGrid;
 
     @FindBy(css = ".product")
     private List<WebElement> productsInGrid;
 
-    @FindBy(css = ".total-products")
+    @FindBy(css = ".total-product")
     private WebElement totalDisplayedProducts;
 
     @FindBy(css = "#js-active-search-filters")
     private WebElement activeFiltersBar;
 
-    public ProductPage getRandomProduct() {
-        return new ProductPage(driver, getRandomElementFromList(productsInGrid));
+    public ProductMiniaturePage getRandomProduct() {
+        return new ProductMiniaturePage(driver, getRandomElementFromList(productsInGrid));
     }
 
-    public ProductPage findProductWithName(String name) {
+    public ProductMiniaturePage findProductWithName(String name) {
         waitToBeVisible(productsInGrid.stream().findFirst().get());
-        return new ProductPage(driver, productsInGrid.stream()
-                .filter(product -> new ProductPage(driver, product).getProductName().equals(name))
+        return new ProductMiniaturePage(driver, productsInGrid.stream()
+                .filter(product -> new ProductMiniaturePage(driver, product).getProductName().equals(name))
                 .findFirst()
                 .get());
     }
 
     public int getCountOfAllProducts() {
         int allProductsQuantity = productsInGrid.size();
-        log.info("There are {} products in grid", allProductsQuantity);
+        log.info("There are {} product in grid", allProductsQuantity);
         return allProductsQuantity;
     }
 
@@ -50,9 +50,9 @@ public class ProductsGridPage extends BasePage {
         return Integer.parseInt(getWebElementText(totalDisplayedProducts).replaceAll("\\D+", ""));
     }
 
-    public List<ProductPage> getAllProducts() {
-        List<ProductPage> list = new ArrayList<>();
-        productsInGrid.forEach(product -> list.add(new ProductPage(driver, product)));
+    public List<ProductMiniaturePage> getAllProducts() {
+        List<ProductMiniaturePage> list = new ArrayList<>();
+        productsInGrid.forEach(product -> list.add(new ProductMiniaturePage(driver, product)));
         return list;
     }
 

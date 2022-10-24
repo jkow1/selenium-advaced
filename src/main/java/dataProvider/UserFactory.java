@@ -4,8 +4,7 @@ import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 import lombok.extern.slf4j.Slf4j;
-import models.User;
-import models.UserBuilder;
+import models.entities.User;
 
 import java.util.Locale;
 
